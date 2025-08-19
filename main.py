@@ -1089,14 +1089,14 @@ def start_record(url_data: tuple, count_variable: int = -1) -> None:
                                               "KHTML, like Gecko) SamsungBrowser/14.2 Chrome/87.0.4280.141 Mobile "
                                               "Safari/537.36")
 
-                                rw_timeout = "15000000"
+                                rw_timeout = "60000000"
                                 analyzeduration = "20000000"
                                 probesize = "10000000"
                                 bufsize = "8000k"
                                 max_muxing_queue_size = "1024"
                                 for pt_host in overseas_platform_host:
                                     if pt_host in record_url:
-                                        rw_timeout = "50000000"
+                                        rw_timeout = "90000000"
                                         analyzeduration = "40000000"
                                         probesize = "20000000"
                                         bufsize = "15000k"
@@ -1118,8 +1118,11 @@ def start_record(url_data: tuple, count_variable: int = -1) -> None:
                                     "-re", "-i", real_url,
                                     "-bufsize", bufsize,
                                     "-sn", "-dn",
+                                    "-reconnect",
+                                    "-reconnect_streamed",
+                                    "-reconnect_on_network_error",
+                                    "-reconnect_at_eof",
                                     "-reconnect_delay_max", "60",
-                                    "-reconnect_streamed", "-reconnect_at_eof",
                                     "-max_muxing_queue_size", max_muxing_queue_size,
                                     "-correct_ts_overflow", "1",
                                     "-avoid_negative_ts", "1"
